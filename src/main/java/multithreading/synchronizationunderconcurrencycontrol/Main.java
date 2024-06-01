@@ -10,7 +10,7 @@ public class Main {
                 for (int i = 1; i <= 100000; i++) {
                     Main.counter++;
                 }
-                System.out.println("The loop in thread1 is over!");
+                System.out.println("The loop in thread1 is over");
             }
         }).start();
 
@@ -20,7 +20,7 @@ public class Main {
                 for (int i = 1; i <= 100000; i++) {
                     Main.counter++;
                 }
-                System.out.println("The loop in thread2 is over!");
+                System.out.println("The loop in thread2 is over");
             }
         }).start();
 
