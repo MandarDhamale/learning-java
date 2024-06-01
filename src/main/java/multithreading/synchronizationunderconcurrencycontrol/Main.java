@@ -7,7 +7,7 @@ public class Main {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                for (int i = 1; i <= 100000; i++) {
+                for (int i = 1; i <= 1000; i++) {
                     Main.counter++;
                 }
                 System.out.println("The loop in thread1 is over");
@@ -17,15 +17,18 @@ public class Main {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                for (int i = 1; i <= 100000; i++) {
+                for (int i = 1; i <= 1000; i++) {
                     Main.counter++;
                 }
                 System.out.println("The loop in thread2 is over");
             }
         }).start();
 
-        Thread.sleep(1000);
+        Thread.sleep(3000);
         System.out.println(Main.counter);
+
+        // if we see the counter value first -> main thread gets over before the loop threads
+        // if we see the counter value after -> main thread gets over after the loop threads
 
 
     }
