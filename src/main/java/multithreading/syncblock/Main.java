@@ -1,23 +1,29 @@
-package multithreading.syncmethods;
+package multithreading.syncblock;
 
 class Brackets {
-    synchronized public void generate() throws InterruptedException {
-        for (int i = 0; i <= 20; i++) {
-            Thread.sleep(5);
-            if (i <= 10) {
-                System.out.print('[');
-            } else {
-                System.out.print(']');
+    public void generate() throws InterruptedException {
+        // the loop block is now synchronized
+        synchronized (this) {
+            for (int i = 0; i <= 20; i++) {
+                Thread.sleep(5);
+                if (i <= 10) {
+                    System.out.print('[');
+                } else {
+                    System.out.print(']');
+                }
             }
+            System.out.println();
         }
-        System.out.println();
-
         for (int i = 0; i < 10; i++) {
             Thread.sleep(10);
         }
-        
+
     }
 }
+
+// apprx. 3000ms for sync method
+// apprx. 2000ms for sync block
+// we can improve the performance of the code by synchronizing only the specific blocks which are required
 
 public class Main {
     public static void main(String[] args) {
@@ -37,9 +43,7 @@ public class Main {
                 }
                 long endTime = System.currentTimeMillis();
                 long totalTime = endTime - startTime;
-                synchronized (this) {
-                    System.out.println("Time(thread1): " + totalTime);
-                }
+                System.out.println("Time(thread1): " + totalTime);
             }
         }).start();
 
@@ -58,9 +62,7 @@ public class Main {
                 }
                 long endTime = System.currentTimeMillis();
                 long totalTime = endTime - startTime;
-               synchronized (this){
-                   System.out.println("Time(thread2): " + totalTime);
-               }
+                System.out.println("Time(thread2): " + totalTime);
             }
         }).start();
     }
