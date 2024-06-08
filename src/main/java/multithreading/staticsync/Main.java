@@ -1,10 +1,9 @@
-package multithreading.syncblock;
+package multithreading.staticsync;
 
 class Brackets {
     private Object lock = "lock"; //this is the recommended way to use synchronization blocks
-    public void generate() throws InterruptedException {
-        // the loop block is now synchronized
-        synchronized (lock) {
+    synchronized public void generate() throws InterruptedException {
+        synchronized (lock){
             for (int i = 0; i <= 20; i++) {
                 Thread.sleep(5);
                 if (i <= 10) {
@@ -13,12 +12,8 @@ class Brackets {
                     System.out.print(']');
                 }
             }
+        }
             System.out.println();
-        }
-        for (int i = 0; i < 10; i++) {
-            Thread.sleep(10);
-        }
-
     }
 }
 
@@ -29,6 +24,7 @@ class Brackets {
 public class Main {
     public static void main(String[] args) {
         Brackets b = new Brackets();
+        Brackets b2 = new Brackets();
 
         //thread 1
         new Thread(new Runnable() {
@@ -44,7 +40,7 @@ public class Main {
                 }
                 long endTime = System.currentTimeMillis();
                 long totalTime = endTime - startTime;
-                System.out.println("Time(thread1): " + totalTime);
+
             }
         }).start();
 
@@ -56,14 +52,13 @@ public class Main {
                 long startTime = System.currentTimeMillis();
                 for (int i = 0; i < 5; i++) {
                     try {
-                        b.generate();
+                        b2.generate();
                     } catch (InterruptedException e) {
                         throw new RuntimeException(e);
                     }
                 }
                 long endTime = System.currentTimeMillis();
                 long totalTime = endTime - startTime;
-                System.out.println("Time(thread2): " + totalTime);
             }
         }).start();
     }
