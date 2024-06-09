@@ -12,7 +12,7 @@ public class WithoutNotify {
             System.out.println("[WITHDRAW] 5s wait completed");
         }
         balance = balance - amount;
-        System.out.println("[WITHDRAW] Complted withdraw of " + amount + " 1CB: " + balance);
+        System.out.println("[WITHDRAW] Complted withdraw of " + amount + " Current Balance: " + balance);
     }
 
     public void deposit(int amount) {
