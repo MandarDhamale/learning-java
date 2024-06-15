@@ -1,9 +1,10 @@
 package multithreading.deadlock;
 
-import java.util.concurrent.locks.ReentrantLock;
 import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
-public class Main {
+public class TryLock {
+
 
     static Lock lock1 = new ReentrantLock();
     static Lock lock2 = new ReentrantLock();
@@ -48,4 +49,6 @@ public class Main {
         System.out.println("Main thread");
 
     }
+
+
 }
