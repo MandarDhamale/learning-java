@@ -30,6 +30,7 @@ public class Main {
         list.add(new Data("Mandar"));
         list.add(new Data("Vijaya"));
         list.add(new Data("Manik"));
+        list.add(new Data("Tom"));
 
 //        Collections.sort(list, new Comparator<Data>() {
 //            @Override
@@ -38,7 +39,19 @@ public class Main {
 //            }
 //        });
 
-        Collections.sort(list, (a, b) -> a.getName().compareTo(b.getName()));
+//        Collections.sort(list, (a, b) -> a.getName().compareTo(b.getName()));
+
+        Collections.sort(list, (a, b) -> {
+            if(a.getName().length() < b.getName().length()){
+                return 1;
+            }else if(a.getName().length() > b.getName().length()){
+                return -1;
+            }else {
+                return 0;
+            }
+        });
+
+
 
         for (Data d : list) {
             System.out.println(d);

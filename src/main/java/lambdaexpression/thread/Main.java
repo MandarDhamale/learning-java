@@ -14,7 +14,6 @@ public class Main {
 
         Thread thread2 = new Thread(()-> System.out.println("Thread2 - lm"));
         thread2.start();
-
-
+        
     }
 }
